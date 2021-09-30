@@ -46,6 +46,8 @@ public enum IAMPortPayMethod: String {
     case cultureland    = "cultureland"   // (문화상품권 / 이니시스 전용)
     case smartculture   = "smartculture"  // (스마트문상 / 이니시스 전용)
     case happymoney     = "happymoney"    // (해피머니 / 이니시스 전용)
+    case kakaopay       = "kakaopay"
+    case naverpay       = "naverpay"
 }
 
 public enum IAMPortPayType {
