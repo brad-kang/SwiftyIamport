@@ -70,7 +70,7 @@ public class IAMPortPay {
     public static let sharedInstance = IAMPortPay()
     
     fileprivate(set) var pgType: IAMPortPGType?
-    fileprivate(set) var payMethod: IAMPortPayMethod?
+    fileprivate(set) var payMethod: String?
     fileprivate(set) var m_redirect_url: String? = nil
     
     fileprivate(set) weak var webView: UIWebView?
@@ -135,6 +135,13 @@ public class IAMPortPay {
     
     @discardableResult
     public func setPayMethod(_ payMethod: IAMPortPayMethod?) -> IAMPortPay {
+        self.payMethod = payMethod?.rawValue
+        
+        return self
+    }
+    
+    @discardableResult
+    public func setPayMethod(_ payMethod: String?) -> IAMPortPay {
         self.payMethod = payMethod
         
         return self
@@ -379,7 +386,7 @@ fileprivate extension IAMPortPay {
                 guard let payMethod = self.payMethod else {
                     return (nil, IAMPortPayError.payMethodType)
                 }
-                param["pay_method"] = payMethod.rawValue
+                param["pay_method"] = payMethod
                 
                 guard let parameters = self.parameters else {
                     return (nil, IAMPortPayError.parametersNone)
